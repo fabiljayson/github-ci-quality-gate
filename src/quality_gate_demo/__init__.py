@@ -1,6 +1,3 @@
-from quality_gate_demo.validator import validate_email  # demo witness: unused import
-import os  # RUFF F401: unused import, gate must fail
-
 """quality_gate_demo - a small validation package used as CI exercise material.
 
 The package exists to give the GitHub Actions quality gate real code,
