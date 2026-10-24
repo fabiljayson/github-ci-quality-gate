@@ -173,6 +173,12 @@ Each failed step logs the reason; artifacts
 
 ## Branch protection setup
 
+> **Status in this repository: already enabled.** A branch ruleset named
+> `protect-main` (ruleset id `25788221`) enforces: pull requests only, the
+> six status checks below required and green, branches up to date before
+> merging, no bypass for administrators. The steps are kept so this gate
+> can be reproduced on any other repository.
+
 To turn the gate from advisory into **enforced**, a repository
 administrator configures rules that require the CI jobs to pass before a
 merge is possible.
@@ -258,6 +264,6 @@ Policy / ToS is **not** required for this data-free, service-free repo).
 | Least privilege / no secrets in fork PRs | ✅ |
 | SHA-pinned actions | ✅ |
 | Local mirror (`local_ci.sh`) | ✅ |
-| Branch protection enforced | ⚠️ documented; must be enabled in repo settings (admin) |
+| Branch protection enforced | ✅ ruleset `protect-main` (id 25788221) active |
 | Docs set (README/arch/security/troubleshooting) | ✅ |
 | Legal applicability assessed | ✅ (no extra policy needed; documented) |
