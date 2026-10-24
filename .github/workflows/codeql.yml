@@ -1,0 +1,34 @@
+name: CodeQL
+
+# Static security analysis, separate from the CI quality gate.
+# Runs on pushes/PRs to main and a weekly schedule.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 5 * * 1"
+
+permissions:
+  # SARIF upload needs write to security-events; this job is the
+  # documented exception to the read-only rule used in ci.yml.
+  security-events: write
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze (Python)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a # v7.0.1
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@3306ba4df796b6b5059316f3af8bdea1e2138c9b # latest on main
+        with:
+          languages: python
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@3306ba4df796b6b5059316f3af8bdea1e2138c9b # latest on main

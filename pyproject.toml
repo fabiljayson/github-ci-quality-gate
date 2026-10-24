@@ -1,0 +1,47 @@
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes (unused imports, undefined names, ...)
+    "I",    # isort-compatible import ordering
+    "UP",   # pyupgrade (modern Python idioms)
+    "B",    # flake8-bugbear (likely bugs)
+    "SIM",  # flake8-simplify
+    "C4",   # flake8-comprehensions
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "E501", # line length is enforced by `ruff format`, not by the linter
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["quality_gate_demo"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "-ra",            # show extra summary for failures/errors/skips
+    "--strict-markers",
+    "--strict-config",
+]
+pythonpath = ["src"]
+markers = [
+    "unit: fast isolated unit tests",
+    "integration: tests exercising several components together",
+]
+
+[tool.coverage.run]
+source = ["quality_gate_demo"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+exclude_also = ["if TYPE_CHECKING:"]
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv"]
